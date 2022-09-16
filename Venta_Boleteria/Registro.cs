@@ -7,27 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Venta_Boleteria.CapaDatos;
 using Venta_Boleteria.CapaNegocios;
 
 namespace Venta_Boleteria
 {
-    public partial class Form1 : Form
+    public partial class Registro : Form
     {
-        private Neg_Usuario objCNusu = new Neg_Usuario();
-        public Form1()
+        private Datos_Usuario objCDusu = new Datos_Usuario();
+        public Registro()
         {
             InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            in
-        }
-
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Registro registro = new Registro();
-            registro.Show();
+            objCDusu.CrearUsuario(int.Parse(txtDocumento.Text), txtNom.Text, txtCorreo.Text, txtCont.Text);
+            MessageBox.Show("Usuario Registrado");
+
+            Form1 login = new Form1();
+            login.Show();
             this.Hide();
         }
     }

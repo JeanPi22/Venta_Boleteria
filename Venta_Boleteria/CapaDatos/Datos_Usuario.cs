@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Venta_Boleteria.CapaDatos
+{
+    public class Datos_Usuario
+    {
+        private Datos_ConexionBD conexion = new Datos_ConexionBD();
+        SqlCommand comando = new SqlCommand();
+
+        public void CrearUsuario(int documento, string nombre, string correo, string contrasena)
+        {
+            comando.Connection = conexion.OpenConnection();
+            comando.CommandText = "Agregar_Usuario";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Documento", documento);
+            comando.Parameters.AddWithValue("@Nombre_Apellido", nombre);
+            comando.Parameters.AddWithValue("@Correo", correo);
+            comando.Parameters.AddWithValue("@Contrasena", contrasena);
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            comando.Connection = conexion.CloseConnection();
+        }
+
+        public void LeerUsuario(int documento, string contrasena)
+        {
+            comando.Connection = conexion.OpenConnection();
+            comando.CommandText = "Leer_Usuario";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Contrasena", contrasena);
+            comando.Parameters.AddWithValue("@Documento", documento);
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            comando.Connection = conexion.CloseConnection();
+        }
+    }
+}
