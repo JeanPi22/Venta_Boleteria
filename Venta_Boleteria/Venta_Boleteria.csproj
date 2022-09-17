@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Boleta.Designer.cs">
+      <DependentUpon>Boleta.cs</DependentUpon>
+    </Compile>
     <Compile Include="CapaDatos\Datos_ConexionBD.cs" />
     <Compile Include="CapaDatos\Datos_Usuario.cs" />
     <Compile Include="CapaNegocios\Neg_Usuario.cs" />
@@ -63,6 +69,9 @@
     <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Boleta.resx">
+      <DependentUpon>Boleta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

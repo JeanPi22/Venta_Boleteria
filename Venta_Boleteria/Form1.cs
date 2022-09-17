@@ -21,7 +21,35 @@ namespace Venta_Boleteria
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            in
+            if (txtLogDoc.Text != "") //Valida que el campo del documento no quede vacio
+            {
+                if (txtCont.Text != "") //Valida que el campo de la contraseña no quede vacio
+                {
+                    //Variable implicita "LoginValidacion" al que se le aasignara el valor
+                    //de leer usuario de la Capa de Negocio
+                    var LoginValidacion = objCNusu.LeerUsuarioLogin(int.Parse(txtLogDoc.Text), txtCont.Text);
+                    if (LoginValidacion == true)
+                    {
+                        Boleta boleta = new Boleta();
+                        boleta.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Documento o contraseña incorrectos \n Por favor intentalo nuevamente");
+                        txtLogDoc.Clear();
+                        txtCont.Clear();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese su contraseña");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor ingrese su documento");
+            }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)

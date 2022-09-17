@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,18 @@ namespace Venta_Boleteria.CapaNegocios
 {
     class Neg_Usuario
     {
-        private Datos_Usuario objCDusu = new Datos_Usuario();
+        private Datos_Usuario objCDusu = new Datos_Usuario();        
+        private Datos_ConexionBD conexion = new Datos_ConexionBD();
+        SqlCommand comando = new SqlCommand();
 
         public void CrearUsuario(int documento, string nombre, string correo, string contrasena)
         {
             objCDusu.CrearUsuario(documento, nombre, correo, contrasena);
         }
+
+        public bool LeerUsuarioLogin(int documento, string contrasena)
+        {
+            return objCDusu.LeerUsuario(documento, contrasena);            
+        }        
     }
 }

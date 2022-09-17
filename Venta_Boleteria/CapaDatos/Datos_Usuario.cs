@@ -24,19 +24,25 @@ namespace Venta_Boleteria.CapaDatos
             comando.Parameters.AddWithValue("@Contrasena", contrasena);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
-            comando.Connection = conexion.CloseConnection();
         }
 
-        public void LeerUsuario(int documento, string contrasena)
+        public bool LeerUsuario(int documento, string contrasena)
         {
             comando.Connection = conexion.OpenConnection();
-            comando.CommandText = "Leer_Usuario";
+            comando.CommandText = "select * from [dbo].[Usuario] WHERE Documento = @Documento and Contrasena = @Contrasena";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@Contrasena", contrasena);
             comando.Parameters.AddWithValue("@Documento", documento);
-            comando.ExecuteNonQuery();
-            comando.Parameters.Clear();
-            comando.Connection = conexion.CloseConnection();
-        }
+            comando.Parameters.AddWithValue("@Contrasena", contrasena);
+            comando.CommandType = CommandType.Text;
+            SqlDataReader leer = comando.ExecuteReader();
+            if (leer.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
+        }      
     }
 }
