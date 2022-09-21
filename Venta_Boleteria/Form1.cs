@@ -30,7 +30,10 @@ namespace Venta_Boleteria
                     var LoginValidacion = objCNusu.LeerUsuarioLogin(int.Parse(txtLogDoc.Text), txtCont.Text);
                     if (LoginValidacion == true)
                     {
-                        Boleta boleta = new Boleta();
+                        Datos doc;
+                        doc.Documento = int.Parse(txtLogDoc.Text);
+
+                        Boleta boleta = new Boleta(doc);
                         boleta.Show();
                         this.Hide();
                     }
@@ -50,6 +53,12 @@ namespace Venta_Boleteria
             {
                 MessageBox.Show("Por favor ingrese su documento");
             }
+        }
+
+        //Estructura para pasar dato del documento al formulario de compra
+        public struct Datos
+        {
+            public int Documento;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)

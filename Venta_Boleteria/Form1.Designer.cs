@@ -61,6 +61,7 @@ namespace Venta_Boleteria
             // 
             this.txtCont.Location = new System.Drawing.Point(270, 237);
             this.txtCont.Name = "txtCont";
+            this.txtCont.PasswordChar = '*';
             this.txtCont.Size = new System.Drawing.Size(261, 22);
             this.txtCont.TabIndex = 9;
             // 

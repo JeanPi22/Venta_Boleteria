@@ -29,6 +29,7 @@ namespace Venta_Boleteria
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbPrecio = new System.Windows.Forms.Label();
             this.btnComprar = new System.Windows.Forms.Button();
             this.lbBienvenido = new System.Windows.Forms.Label();
@@ -37,12 +38,20 @@ namespace Venta_Boleteria
             this.label2 = new System.Windows.Forms.Label();
             this.cbselect = new System.Windows.Forms.ComboBox();
             this.labDocBol = new System.Windows.Forms.Label();
+            this.lbTotal = new System.Windows.Forms.Label();
+            this.venta_BoleteriaDataSet = new Venta_Boleteria.Venta_BoleteriaDataSet();
+            this.localidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.localidadTableAdapter = new Venta_Boleteria.Venta_BoleteriaDataSetTableAdapters.LocalidadTableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.venta_BoleteriaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lbPrecio
             // 
             this.lbPrecio.AutoSize = true;
-            this.lbPrecio.Location = new System.Drawing.Point(121, 296);
+            this.lbPrecio.Location = new System.Drawing.Point(121, 285);
             this.lbPrecio.Name = "lbPrecio";
             this.lbPrecio.Size = new System.Drawing.Size(48, 17);
             this.lbPrecio.TabIndex = 15;
@@ -51,12 +60,13 @@ namespace Venta_Boleteria
             // 
             // btnComprar
             // 
-            this.btnComprar.Location = new System.Drawing.Point(110, 344);
+            this.btnComprar.Location = new System.Drawing.Point(110, 354);
             this.btnComprar.Name = "btnComprar";
             this.btnComprar.Size = new System.Drawing.Size(75, 23);
             this.btnComprar.TabIndex = 14;
             this.btnComprar.Text = "Comprar";
             this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // lbBienvenido
             // 
@@ -95,10 +105,16 @@ namespace Venta_Boleteria
             // cbselect
             // 
             this.cbselect.FormattingEnabled = true;
-            this.cbselect.Location = new System.Drawing.Point(88, 246);
+            this.cbselect.Items.AddRange(new object[] {
+            "Sur",
+            "Norte",
+            "Oriental",
+            "Occidental"});
+            this.cbselect.Location = new System.Drawing.Point(93, 246);
             this.cbselect.Name = "cbselect";
             this.cbselect.Size = new System.Drawing.Size(121, 24);
             this.cbselect.TabIndex = 9;
+            this.cbselect.SelectedIndexChanged += new System.EventHandler(this.cbselect_SelectedIndexChanged);
             // 
             // labDocBol
             // 
@@ -110,11 +126,48 @@ namespace Venta_Boleteria
             this.labDocBol.Text = "Documento";
             this.labDocBol.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lbTotal
+            // 
+            this.lbTotal.AutoSize = true;
+            this.lbTotal.Location = new System.Drawing.Point(121, 320);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(40, 17);
+            this.lbTotal.TabIndex = 16;
+            this.lbTotal.Text = "Total";
+            this.lbTotal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbTotal.Click += new System.EventHandler(this.lbTotal_Click);
+            // 
+            // venta_BoleteriaDataSet
+            // 
+            this.venta_BoleteriaDataSet.DataSetName = "Venta_BoleteriaDataSet";
+            this.venta_BoleteriaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // localidadBindingSource
+            // 
+            this.localidadBindingSource.DataMember = "Localidad";
+            this.localidadBindingSource.DataSource = this.venta_BoleteriaDataSet;
+            // 
+            // localidadTableAdapter
+            // 
+            this.localidadTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(260, 103);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(499, 292);
+            this.dataGridView1.TabIndex = 17;
+            // 
             // Boleta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.lbTotal);
             this.Controls.Add(this.lbPrecio);
             this.Controls.Add(this.btnComprar);
             this.Controls.Add(this.lbBienvenido);
@@ -125,6 +178,10 @@ namespace Venta_Boleteria
             this.Controls.Add(this.labDocBol);
             this.Name = "Boleta";
             this.Text = "Boleta";
+            this.Load += new System.EventHandler(this.Boleta_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.venta_BoleteriaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,5 +197,10 @@ namespace Venta_Boleteria
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbselect;
         private System.Windows.Forms.Label labDocBol;
+        private System.Windows.Forms.Label lbTotal;
+        private Venta_BoleteriaDataSet venta_BoleteriaDataSet;
+        private System.Windows.Forms.BindingSource localidadBindingSource;
+        private Venta_BoleteriaDataSetTableAdapters.LocalidadTableAdapter localidadTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

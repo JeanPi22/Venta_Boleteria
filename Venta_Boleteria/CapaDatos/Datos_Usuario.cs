@@ -5,13 +5,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Venta_Boleteria.CapaDatos
 {
     public class Datos_Usuario
     {
         private Datos_ConexionBD conexion = new Datos_ConexionBD();
-        SqlCommand comando = new SqlCommand();
+        SqlCommand comando = new SqlCommand();        
 
         public void CrearUsuario(int documento, string nombre, string correo, string contrasena)
         {
@@ -30,6 +31,7 @@ namespace Venta_Boleteria.CapaDatos
         {
             comando.Connection = conexion.OpenConnection();
             comando.CommandText = "select * from [dbo].[Usuario] WHERE Documento = @Documento and Contrasena = @Contrasena";
+            //comando.CommandText = "Leer_Usuario_Login";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Documento", documento);
             comando.Parameters.AddWithValue("@Contrasena", contrasena);
@@ -38,11 +40,12 @@ namespace Venta_Boleteria.CapaDatos
             if (leer.HasRows)
             {
                 return true;
+
             }
             else
             {
                 return false;
-            }            
-        }      
+            }
+        }
     }
 }

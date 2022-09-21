@@ -52,8 +52,10 @@
     <Compile Include="Boleta.Designer.cs">
       <DependentUpon>Boleta.cs</DependentUpon>
     </Compile>
+    <Compile Include="CapaDatos\Datos_Compra.cs" />
     <Compile Include="CapaDatos\Datos_ConexionBD.cs" />
     <Compile Include="CapaDatos\Datos_Usuario.cs" />
+    <Compile Include="CapaNegocios\Neg_Compra.cs" />
     <Compile Include="CapaNegocios\Neg_Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -68,6 +70,11 @@
     </Compile>
     <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Venta_BoleteriaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Venta_BoleteriaDataSet.xsd</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Boleta.resx">
       <DependentUpon>Boleta.cs</DependentUpon>
@@ -96,6 +103,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Venta_BoleteriaDataSet.xsc">
+      <DependentUpon>Venta_BoleteriaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Venta_BoleteriaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Venta_BoleteriaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Venta_BoleteriaDataSet.xss">
+      <DependentUpon>Venta_BoleteriaDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
